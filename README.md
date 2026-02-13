@@ -1,2 +1,2 @@
 # KUROKAMI-
-Evolve or Fade
+Evolve or Fade!
