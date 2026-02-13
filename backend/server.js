@@ -19,11 +19,11 @@ app.use(express.json());
 
 // Routes
 app.get('/health', (req, res) => {
-  res.status(200).json({ status: 'ok', message: 'Server is running' });
+    res.status(200).json({ status: 'ok', message: 'Server is running' });
 });
 
 const PORT = process.env.PORT || 5000;
 
 app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
+    console.log(`Server running on port ${PORT}`);
 });
