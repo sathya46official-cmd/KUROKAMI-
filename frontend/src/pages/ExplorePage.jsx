@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { searchUsers, getAllUsers, getTrendingPosts } from '../services/exploreService';
+import { searchUsers, getAllUsers } from '../services/exploreService';
+import { getPosts } from '../services/postService';
 import { useAuth } from '../context/AuthContext';
 
 export default function ExplorePage() {
@@ -12,8 +13,8 @@ export default function ExplorePage() {
     const [tab, setTab] = useState('users');
 
     useEffect(() => {
-        Promise.all([getAllUsers(), getTrendingPosts()])
-            .then(([u, t]) => { setUsers(u.data.users); setTrending(t.data.posts); })
+        Promise.all([getAllUsers(), getPosts()])
+            .then(([u, t]) => { setUsers(u.data.users); setTrending(t.data); })
             .catch(console.error)
             .finally(() => setLoading(false));
     }, []);

@@ -1,5 +1,5 @@
 import { useState, useEffect, useCallback, useRef } from 'react';
-import { getFeed } from '../services/postService';
+import { getPosts, createPost, likePost } from '../services/postService';
 import PostCard from '../components/PostCard';
 
 export default function FeedPage() {
@@ -12,9 +12,9 @@ export default function FeedPage() {
     const loadPosts = useCallback(async (p) => {
         setLoading(true);
         try {
-            const res = await getFeed(p);
-            setPosts(prev => p === 1 ? res.data.posts : [...prev, ...res.data.posts]);
-            setHasMore(p < res.data.totalPages);
+            const res = await getPosts(p);
+            setPosts(prev => p === 1 ? res.data : [...prev, ...res.data]);
+            setHasMore(false); // Backend sends all posts at once currently
         } catch (err) { console.error(err); }
         finally { setLoading(false); }
     }, []);

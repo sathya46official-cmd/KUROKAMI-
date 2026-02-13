@@ -18,7 +18,7 @@ export default function RegisterPage() {
         setLoading(true);
         try {
             const res = await register(form);
-            loginUser(res.data.token, res.data.user);
+            loginUser(res.data.token, res.data);
             navigate('/');
         } catch (err) {
             setError(err.response?.data?.message || 'Registration failed');

@@ -13,7 +13,7 @@ export function AuthProvider({ children }) {
         const token = localStorage.getItem('kurokami_token');
         if (token) {
             getMe()
-                .then(res => setUser(res.data.user))
+                .then(res => setUser(res.data))
                 .catch(() => {
                     localStorage.removeItem('kurokami_token');
                     localStorage.removeItem('kurokami_user');

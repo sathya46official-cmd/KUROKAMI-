@@ -98,9 +98,25 @@ const likePost = async (req, res) => {
     }
 };
 
+
+// @desc    Get posts by user
+// @route   GET /api/posts/user/:userId
+// @access  Public
+const getUserPosts = async (req, res) => {
+    try {
+        const posts = await Post.find({ user: req.params.userId })
+            .sort({ createdAt: -1 })
+            .populate('user', 'username avatar');
+        res.json(posts);
+    } catch (error) {
+        res.status(500).json({ message: error.message });
+    }
+};
+
 module.exports = {
     createPost,
     getPosts,
     deletePost,
     likePost,
+    getUserPosts,
 };

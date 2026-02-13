@@ -16,7 +16,7 @@ export default function LoginPage() {
         setLoading(true);
         try {
             const res = await login(form);
-            loginUser(res.data.token, res.data.user);
+            loginUser(res.data.token, res.data);
             navigate('/');
         } catch (err) {
             setError(err.response?.data?.message || 'Login failed');

@@ -20,9 +20,12 @@ export default function ProfilePage() {
         setLoading(true);
         Promise.all([getProfile(id), getUserPosts(id)])
             .then(([p, po]) => {
-                setProfile(p.data.user);
-                setPosts(po.data.posts);
-                setForm({ bio: p.data.user.bio || '', favoriteAnime: (p.data.user.favoriteAnime || []).join(', ') });
+                const userData = p.data.user || p.data;
+                setProfile(userData);
+                setPosts(po.data.posts || po.data);
+                if (userData) {
+                    setForm({ bio: userData.bio || '', favoriteAnime: (userData.favoriteAnime || []).join(', ') });
+                }
             })
             .catch(console.error)
             .finally(() => setLoading(false));
