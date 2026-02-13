@@ -28,6 +28,10 @@ app.get('/health', (req, res) => {
     res.status(200).json({ status: 'ok', message: 'Server is running' });
 });
 
+app.get('/', (req, res) => {
+    res.send('API is running. This is the BACKEND server. The Frontend is not built yet.');
+});
+
 const PORT = process.env.PORT || 5000;
 
 app.listen(PORT, () => {
